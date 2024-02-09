@@ -19,6 +19,18 @@ class DirectorsController < ApplicationController
     redirect_to("/directors")
   end
 
+  def update
+    id = params["path_id"]
+    matching_record = Director.where({ :id => id })
+    director = matching_record[0]
+    director.name = params["name"]
+    director.dob = params["dob"]
+    director.bio = params["bio"]
+    director.image = params["image"]
+    director.save
+    redirect_to("/directors/#{id}")
+  end
+
   def index
     matching_directors = Director.all
     @list_of_directors = matching_directors.order({ :created_at => :desc })

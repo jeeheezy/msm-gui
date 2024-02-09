@@ -12,7 +12,7 @@
 
 <hr>
 
-<form action="/modify_director_record" method="post">
+<form action="/modify_director_record/<%= @the_director.id %>" method="post">
   <div>
     <label for="name_field">Name</label>
     <input type="text" id="name_field" name="name" value="<%= @the_director.name %>">
