@@ -11,14 +11,16 @@ class MoviesController < ApplicationController
 
     new_movie.save
 
-    redirect_to("/movies")
-    # Retrieve the user's input from params
-    # Create a record in the movie table
-    # Populate each column with the user's input
-    # Save
+    redirect_to("/movies")    
+  end
 
-    # Redirect the user to /movies URL
-    
+  def destroy
+    id = params["path_id"]
+    matching_record = Movie.where({ :id => id })
+    movie = matching_record[0]
+
+    movie.destroy
+    redirect_to("/movies")
   end
 
   def index
