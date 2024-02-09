@@ -23,6 +23,23 @@ class MoviesController < ApplicationController
     redirect_to("/movies")
   end
 
+  def update
+    id = params["path_id"]
+    matching_record = Movie.where({ :id => id })
+    movie = matching_record[0]
+
+    movie.title = params["title"]
+    movie.year = params["year"]
+    movie.duration = params["duration"]
+    movie.description = params["description"]
+    movie.image = params["image"]
+    movie.director_id = params["director_id"]
+
+    movie.save
+
+    redirect_to("/movies/#{id}")
+  end
+
   def index
     matching_movies = Movie.all
     @list_of_movies = matching_movies.order({ :created_at => :desc })
